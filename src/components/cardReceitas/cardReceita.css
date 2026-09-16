@@ -1,0 +1,76 @@
+/* Container principal do card de receita */
+.card-receita {
+  width: 100%;
+  max-width: 340px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-receita:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* Estilização da imagem*/
+.card-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Bloco que envolve todos os textos e detalhes */
+.card-content {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Título */
+.card-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+/* Seções de Ingredientes e Modo de Preparo */
+.card-section {
+  font-size: 0.875rem;
+  color: #4b5563;
+}
+
+/* Rótulos em destaque */
+.card-section strong {
+  display: block;
+  color: #111827;
+  margin-bottom: 2px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Parágrafo com o conteúdo explicativo */
+.card-section p {
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Estilização da tag */
+.card-tags {
+  align-self: flex-start;
+  margin-top: 4px;
+  padding: 4px 10px;
+  background-color: #f3f4f6;
+  color: #059669;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
