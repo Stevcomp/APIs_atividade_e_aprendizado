@@ -1,3 +1,4 @@
+import "./CardFilme.css"
 
 export default function CardFilme({filme}) {
     return(
