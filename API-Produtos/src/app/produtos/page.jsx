@@ -1,26 +1,25 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import dados from "@/filmes.json";
-import CardFilme from "@/components/CardFilme";
+import CardProduto from "@/components/CardProduto";
 
- export default function Filmes() {
-    const [listaFilmes, setlistaFilmes] = useState([]);
-    useEffect ( () => {
-        setlistaFilmes(dados);
-    }, [] )
+export default function Produtos() {
+  const [produtos, setProdutos] = useState([]);
 
-    return (
-        <main>
-             
-            {listaFilmes.length > 0 &&
-                <div className="container-filmes">
-                    {listaFilmes.map(f => {
-                        return <CardFilme key={f.id} filme={f}/>
-                    })}
-                </div>            
-            }
+  useEffect(() => {
+    fetch("https://dummyjson.com/products")
+      .then((res) => res.json())
+      .then((data) => setProdutos(data.products));
+  }, []);
 
-        </main>
-    )
+  return (
+    <main>
+      <h1><strong>Lista de Produtos</strong></h1>
+      <div className="container-produtos">
+        {produtos.map((p) => (
+          <CardProduto key={p.id} products={p} />
+        ))}
+      </div>
+    </main>
+  );
 }

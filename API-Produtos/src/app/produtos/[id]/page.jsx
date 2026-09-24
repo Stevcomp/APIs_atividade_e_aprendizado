@@ -1,53 +1,41 @@
-"use client";
-
-import { useState, useEffect } from "react";
 import CardProduto from "@/components/CardProduto";
+import "./produto.css";
 
-export default function Produtos() {
-    const [listaProdutos, setListaProdutos] = useState([]);
+export default async function Produtos({ params }) {
+  const { id } = await params;
+  const res = await fetch(`https://dummyjson.com/products/${id}`);
+  const produto = await res.json();
 
-    useEffect(() => {
-        fetch("https://dummyjson.com/products")
-            .then((res) => res.json())
-            .then((data) => {
-                setListaProdutos(data.products);
-            })
-    });
+  return (
+    <main>
+      {produto != null ? (
+        <>
+          <h1>{produto.title}</h1>
 
-    return (
-        <main>
-  {filme != null ? (
-    <>
-      <h1>Filme: {filme.titulo}</h1>
+          <div className="conteudo-produto">
+            <img src={produto.thumbnail} alt="Imagem do Produto" />
 
-      <div className="conteudo-filme">
-        <img src={products.thumbnail} alt="" />
-
-        <div className="info-filme">
-          <p><strong>Gêneros:</strong> {products.generos}</p>
-          <p><strong>Ano de Lançamento:</strong> {products.ano}</p>
-          <p><strong>Sinopse:</strong> {products.sinopse}</p>
-          <p><strong>Tempo de Duração:</strong> {products.duracaoMinutos} min</p>
-        </div>
-      </div>
-    </>
-  ) : (
-    listaProdutos.length > 0 && (
-      <div className="container-filmes">
-        {listaProdutos.map((p) => (
-          <CardFilme key={p.id} produto={p} />
-        ))}
-      </div>
-    )
-  )}
-</main>
-    )
+            <div className="info-produto">
+              <p><strong>Descrição:</strong> {produto.description}</p>
+              <p><strong>Categoria:</strong> {produto.category}</p>
+              <p><strong>Preço:</strong> R$ {produto.price}</p>
+              <p><strong>Estoque:</strong> {produto.stock ?? "Não informado"}</p>
+              <p><strong>Tags:</strong> {produto.tags || "Sem tags"}</p>
+              <p><strong>Marca:</strong> {produto.brand || "Não informada"}</p>
+              <p><strong>Data de Fabricação:</strong> {produto.date || "Não informada"}</p>
+              <p><strong>Código de Barras:</strong> {produto.barcode || "Não informado"}</p>
+            </div>
+          </div>
+        </>
+      ) : (
+        listaProdutos.length > 0 && (
+          <div className="container-produtos">
+            {listaProdutos.map((p) => (
+              <CardProduto key={p.id} produto={p} />
+            ))}
+          </div>
+        )
+      )}
+    </main>
+  );
 }
-
-
-
-
-    useEffect(() => {
-        const filmeEncontrado = dados.find(f => f.id == params.id);
-        setFilme(filmeEncontrado);
-    }, [])
